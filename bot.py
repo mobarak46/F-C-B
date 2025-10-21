@@ -25,5 +25,21 @@ def main():
     app.add_handler(MessageHandler(filters.PHOTO, handle_image))
     app.run_polling()
 
+
+# Ping thread to keep bot alive
+def ping_loop():
+    while True:
+        try:
+            r = requests.get(URL, timeout=10)
+            if r.status_code == 200:
+                print("🍁 ᴘɪɴɢ sᴜᴄᴄᴇssғᴜʟ")
+            else:
+                print(f"👹 ᴘɪɴɢ ғᴀɪʟᴇᴅ: {r.status_code}")
+        except Exception as e:
+            print(f"❌ ᴇxᴄᴇᴘᴛɪᴏɴ ᴅᴜʀɪɴɢ ᴘɪɴɢ: {e}")
+        time.sleep(120)
+
+threading.Thread(target=ping_loop, daemon=True).start()
+
 if __name__ == "__main__":
     main()
