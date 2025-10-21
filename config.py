@@ -1,39 +1,32 @@
 import os
+import re
+from os import environ
+from Script import script 
 from dotenv import load_dotenv
-
 load_dotenv()
 BOT_TOKEN = os.getenv("TOKEN")
-API_ID = int(os.getenv("API_ID", 0))
+API_ID = int(os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
-ADMIN_IDS = list(map(int, os.getenv("ADMIN_IDS", "").split(","))) if os.getenv("ADMIN_IDS") else []
-
-import re
-
-from os import environ
-
-from Script import script 
+OWNER_IDS = list(map(int, os.getenv("OWNER_IDS", "").split(","))) if os.getenv("OWNER_IDS") else []
 
 
 
 id_pattern = re.compile(r'^.\d+$')
 
 
-
 # Bot information
 
-SESSION = environ.get('SESSION', 'Media_search')
+SESSION = os.getenv('SESSION', 'Media_search')
 
 API_ID = int(environ.get('API_ID', ''))
 
 API_HASH = environ.get('API_HASH', '')
 
-BOT_TOKEN = environ.get('BOT_TOKEN', "")
-
 
 
 # This Pictures Is For Start Message Picture, You Can Add Multiple By Giving One Space Between Each.
 
-PICS = (environ.get('PICS', 'https://i.ibb.co/Q3qqkF71/x.jpg https://i.ibb.co/TJ5JdQR/x.jpg https://i.ibb.co/d433j46Z/x.jpg https://i.ibb.co/60jTMLMj/x.jpg https://i.ibb.co/TBWjyQdV/x.jpg https://i.ibb.co/Z6nDcZyg/x.jpg https://i.ibb.co/23QWvRfc/x.jpg https://i.ibb.co/DPjsyCgt/x.jpg https://i.ibb.co/3yJGPK8z/x.jpg https://i.ibb.co/F4NBM99C/x.jpg https://i.ibb.co/Z1T97h5q/x.jpg https://i.ibb.co/Z1FTxX0r/x.jpg https://i.ibb.co/G4w5QjVN/x.jpg https://i.ibb.co/zTdJw86t/x.jpg https://i.ibb.co/wFmLvYG0/x.jpg https://i.ibb.co/WN3j2P3p/x.jpg https://i.ibb.co/p6zj7Kw8/x.jpg https://i.ibb.co/3yjGPSDP/x.jpg https://i.ibb.co/27CXGp2b/x.jpg https://i.ibb.co/Xrq7JHfd/x.jpg https://i.ibb.co/mCTW950v/x.jpg')).split()
+PICS = (environ.get('PICS', '')).split()
 
 
 
@@ -45,28 +38,23 @@ auth_users = [int(user) if id_pattern.search(user) else user for user in environ
 
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002058704187')) # This Channel Is For When User Start Your Bot Then Bot Send That User Name And Id In This Log Channel, Same For Group Also.
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '')) # This Channel Is For When User Start Your Bot Then Bot Send That User Name And Id In This Log Channel, Same For Group Also.
 
 
 # MongoDB information
 
-DATABASE_URI = environ.get('DATABASE_URI', "")# IF Multiple Database Is False Then Fill Only This Database Url.
+DATABASE_URI = environ.get('DATABASE_URI', "")
 
-DATABASE_NAME = environ.get('DATABASE_NAME', "") 
+DATABASE_NAME = environ.get('DATABASE_NAME', "")  #don't use cluser0
 
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_Files')
 
-#Modes Calls and True & False
-
-# Premium And Referal Settings
-
-PREMIUM_AND_REFERAL_MODE = bool(environ.get('PREMIUM_AND_REFERAL_MODE', True)) # Set Ture Or False
 
 # Rename Info : If True Then Bot Rename File Else Not
 
-RENAME_MODE = bool(environ.get('RENAME_MODE', False)) # Set True or False
+RENAME_MODE = bool(environ.get('RENAME_MODE', True)) # Set True or False
 
-AUTO_MODE = bool(environ.get('AUTO_MODE', False)) # Set True or False
+AUTO_MODE = bool(environ.get('AUTO_MODE', True)) # Set True or False
 
 
 
@@ -106,7 +94,7 @@ PORT = environ.get("PORT", "8000")
 
 MSG_ALRT = environ.get('MSG_ALRT', 'Wᴏʀᴋɪɴɢ 💌')
 
-MUBI_FILE_CAPTION = environ.get("MUBI_FILE_CAPTION", f"{script.CAPTION}"
+MUBI_FILE_CAPTION = environ.get("MUBI_FILE_CAPTION", f"{script.MUBI_FILE_CAPTION}") # this caption for if user didn't set custom caption this will work
 
 
 
